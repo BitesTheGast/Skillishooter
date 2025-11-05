@@ -1,0 +1,39 @@
+[gd_scene load_steps=8 format=3 uid="uid://6rdgd0h2ut07"]
+
+[ext_resource type="Script" uid="uid://hfx3afo50787" path="res://player/player.gd" id="1_oul6g"]
+[ext_resource type="Script" uid="uid://c6sxpjxbupgco" path="res://player/controllers.gd" id="2_g1dw6"]
+[ext_resource type="Script" uid="uid://b6iip5ekc3ydu" path="res://player/movement.gd" id="2_rkbax"]
+[ext_resource type="Script" uid="uid://bmx5o1cxbigcv" path="res://player/physics.gd" id="4_yw30f"]
+[ext_resource type="Script" uid="uid://b53cterp7ly4j" path="res://player/camera.gd" id="5_qjkh3"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kqu6x"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_oul6g"]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_oul6g")
+
+[node name="Controllers" type="Node" parent="."]
+script = ExtResource("2_g1dw6")
+
+[node name="Movement" type="Node" parent="Controllers"]
+script = ExtResource("2_rkbax")
+
+[node name="Physics" type="Node" parent="Controllers"]
+script = ExtResource("4_yw30f")
+
+[node name="Camera" type="Node" parent="Controllers"]
+script = ExtResource("5_qjkh3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_kqu6x")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+mesh = SubResource("CapsuleMesh_oul6g")
+skeleton = NodePath("../..")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head"]

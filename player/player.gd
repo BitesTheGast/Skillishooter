@@ -1,5 +1,8 @@
 class_name Player extends CharacterBody3D
 
+#signals
+signal update_crosshair(velocity: Vector3)
+
 #onready vars, lowercase
 @onready var collision = $CollisionShape3D
 @onready var mesh = $CollisionShape3D/MeshInstance3D

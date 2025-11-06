@@ -1,0 +1,109 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnhqm2jjr2t6j"]
+
+[ext_resource type="Script" uid="uid://dyi3j8778bgfx" path="res://ui/main_menu/main_menu.gd" id="1_uhj5c"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -36.0
+offset_top = -10.0
+offset_right = -36.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uhj5c")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -68.0
+offset_right = 35.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Main" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="HostButton" type="Button" parent="CenterContainer/Main"]
+layout_mode = 2
+text = "Host"
+
+[node name="JoinButton" type="Button" parent="CenterContainer/Main"]
+layout_mode = 2
+text = "Join"
+
+[node name="SettingsButton" type="Button" parent="CenterContainer/Main"]
+layout_mode = 2
+text = "Settings"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/Main"]
+layout_mode = 2
+text = "Quit"
+
+[node name="Host" type="VBoxContainer" parent="CenterContainer"]
+visible = false
+layout_mode = 2
+
+[node name="StartHostButton" type="Button" parent="CenterContainer/Host"]
+layout_mode = 2
+text = "Host"
+
+[node name="PortEdit" type="LineEdit" parent="CenterContainer/Host"]
+layout_mode = 2
+text = "8080"
+placeholder_text = "Port"
+expand_to_text_length = true
+
+[node name="BackButton" type="Button" parent="CenterContainer/Host"]
+layout_mode = 2
+text = "Back"
+
+[node name="Join" type="VBoxContainer" parent="CenterContainer"]
+visible = false
+layout_mode = 2
+
+[node name="JoinServerButton" type="Button" parent="CenterContainer/Join"]
+layout_mode = 2
+text = "Join"
+
+[node name="IpEdit" type="LineEdit" parent="CenterContainer/Join"]
+layout_mode = 2
+text = "localhost"
+placeholder_text = "IP"
+expand_to_text_length = true
+
+[node name="PortEdit" type="LineEdit" parent="CenterContainer/Join"]
+layout_mode = 2
+text = "8080"
+placeholder_text = "Port"
+expand_to_text_length = true
+
+[node name="BackButton" type="Button" parent="CenterContainer/Join"]
+layout_mode = 2
+text = "Back"
+
+[node name="Settings" type="VBoxContainer" parent="CenterContainer"]
+visible = false
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="CenterContainer/Settings"]
+layout_mode = 2
+text = "Back"
+
+[connection signal="pressed" from="CenterContainer/Main/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="CenterContainer/Main/JoinButton" to="." method="_on_join_button_pressed"]
+[connection signal="pressed" from="CenterContainer/Main/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="CenterContainer/Main/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="CenterContainer/Host/StartHostButton" to="." method="_on_start_host_button_pressed"]
+[connection signal="pressed" from="CenterContainer/Host/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="CenterContainer/Join/JoinServerButton" to="." method="_on_join_server_button_pressed"]
+[connection signal="pressed" from="CenterContainer/Join/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="CenterContainer/Settings/BackButton" to="." method="_on_back_button_pressed"]

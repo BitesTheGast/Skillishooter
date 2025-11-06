@@ -25,5 +25,3 @@ script = ExtResource("3_xwkvk")
 visible = false
 
 [node name="MainMenu" parent="CanvasLayer" instance=ExtResource("5_3wy1v")]
-
-[node name="Players" type="Node3D" parent="."]

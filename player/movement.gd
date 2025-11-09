@@ -16,7 +16,10 @@ func _physics_process(delta: float) -> void:
 	p.move_and_slide()
 
 func get_speed():
+	var mult := 1.0
+	if Input.is_action_pressed("st_sprint"):
+		mult *= p.Sprint_mult
 	if p.is_on_floor():
-		return p.Speed
+		return p.Speed * mult
 	else:
-		return p.Air_speed
+		return p.Air_speed * mult

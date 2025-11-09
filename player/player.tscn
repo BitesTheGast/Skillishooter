@@ -1,17 +1,23 @@
-[gd_scene load_steps=8 format=3 uid="uid://6rdgd0h2ut07"]
+[gd_scene load_steps=11 format=3 uid="uid://6rdgd0h2ut07"]
 
 [ext_resource type="Script" uid="uid://hfx3afo50787" path="res://player/player.gd" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://c6sxpjxbupgco" path="res://player/controllers.gd" id="2_g1dw6"]
+[ext_resource type="PackedScene" uid="uid://be43gyatt74j5" path="res://ui/hud/hud.tscn" id="2_rgyib"]
 [ext_resource type="Script" uid="uid://b6iip5ekc3ydu" path="res://player/movement.gd" id="2_rkbax"]
 [ext_resource type="Script" uid="uid://bmx5o1cxbigcv" path="res://player/physics.gd" id="4_yw30f"]
 [ext_resource type="Script" uid="uid://b53cterp7ly4j" path="res://player/camera.gd" id="5_qjkh3"]
+[ext_resource type="Script" uid="uid://d1bof52ux6i3s" path="res://player/weapon.gd" id="6_g6k8r"]
+[ext_resource type="Script" uid="uid://dmr8fovogvf25" path="res://player/animation.gd" id="7_boad6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kqu6x"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_oul6g"]
 
 [node name="Player" type="CharacterBody3D"]
+collision_layer = 2
 script = ExtResource("1_oul6g")
+
+[node name="Hud" parent="." instance=ExtResource("2_rgyib")]
 
 [node name="Controllers" type="Node" parent="."]
 script = ExtResource("2_g1dw6")
@@ -25,6 +31,12 @@ script = ExtResource("4_yw30f")
 [node name="Camera" type="Node" parent="Controllers"]
 script = ExtResource("5_qjkh3")
 
+[node name="Weapon" type="Node" parent="Controllers"]
+script = ExtResource("6_g6k8r")
+
+[node name="Animation" type="Node" parent="Controllers"]
+script = ExtResource("7_boad6")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_kqu6x")
@@ -37,3 +49,9 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
+
+[node name="RayCast3D" type="RayCast3D" parent="Head"]
+target_position = Vector3(0, 0, -500)
+
+[connection signal="add_weapon" from="." to="Controllers/Weapon" method="_on_player_add_weapon"]
+[connection signal="weapon_anim" from="." to="Controllers/Weapon" method="_on_player_weapon_anim"]

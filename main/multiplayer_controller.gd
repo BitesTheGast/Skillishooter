@@ -1,8 +1,6 @@
 class_name MultiplayerController extends Node
 
 @onready var MainMenu = $"../CanvasLayer/MainMenu"
-@onready var Hud = $"../CanvasLayer/Hud"
-
 @onready var Player_scene = preload("res://player/player.tscn")
 
 var enet_peer = ENetMultiplayerPeer.new()
@@ -13,7 +11,6 @@ func _ready() -> void:
 
 func Start_Host(PORT):
 	MainMenu.hide_all()
-	Hud.show()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	enet_peer.create_server(PORT)
 	multiplayer.multiplayer_peer = enet_peer
@@ -24,7 +21,6 @@ func Start_Host(PORT):
 
 func Join_Server(Ip, PORT):
 	MainMenu.hide_all()
-	Hud.show()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 	enet_peer.create_client(Ip, PORT)
@@ -35,11 +31,7 @@ func add_player(peer_id):
 	player.name = str(peer_id)
 	add_child(player)
 	if player.is_multiplayer_authority():
-		pass
-
-func _on_multiplayer_spawner_spawned(node: Node) -> void:
-	if node.is_multiplayer_authority():
-		pass
+		player.emit_signal("add_weapon", 0)
 
 func remove_player(peer_id):
 	var player = get_node_or_null(str(peer_id))

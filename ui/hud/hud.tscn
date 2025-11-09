@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://be43gyatt74j5"]
+[gd_scene load_steps=5 format=3 uid="uid://be43gyatt74j5"]
 
+[ext_resource type="Script" uid="uid://ddiwnb6k5qndi" path="res://ui/hud/hud.gd" id="1_e0nub"]
 [ext_resource type="Script" uid="uid://dcuhhe8xnbmnq" path="res://ui/hud/crosshair.gd" id="2_4d6w6"]
+[ext_resource type="Script" uid="uid://cc5sma0pg7ha4" path="res://ui/hud/ammo.gd" id="2_e0nub"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4d6w6"]
+font_size = 64
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Hud" type="Control"]
 layout_mode = 3
@@ -9,6 +16,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_e0nub")
 
 [node name="Crosshair" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -36,3 +44,18 @@ width = 2.0
 [node name="Left" type="Line2D" parent="Crosshair"]
 points = PackedVector2Array(0, -5, 0, -15)
 width = 2.0
+
+[node name="Ammo" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "6/6"
+label_settings = SubResource("LabelSettings_4d6w6")
+script = ExtResource("2_e0nub")
